@@ -4,118 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.json">
-  <title>公众号阅读</title>
+  <title>梦影露电</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="app">
-    <!-- 顶部栏 -->
-    <header class="header">
-      <div class="header-title" id="headerTitle">公众号阅读</div>
-      <button class="header-btn" id="switchAccountBtn" onclick="showAccountModal()">切换</button>
+    <!-- 公众号头部 -->
+    <header class="account-header">
+      <div class="account-bg"></div>
+      <div class="account-info">
+        <div class="account-avatar-large">梦</div>
+        <div class="account-meta">
+          <h1 class="account-name">梦影露电</h1>
+          <p class="account-desc">记录生活点滴，分享所思所感</p>
+        </div>
+      </div>
     </header>
 
-    <!-- 文章列表页 -->
-    <main class="main" id="articlesPage">
-      <div class="empty-state" id="emptyState" style="display: none;">
-        <div class="empty-icon">📰</div>
-        <div class="empty-text">暂无文章</div>
-        <button class="btn btn-primary" onclick="showAddArticle()">添加文章</button>
-      </div>
+    <!-- 文章列表 -->
+    <main class="article-container">
+      <div class="section-title">历史推送</div>
       <div class="article-list" id="articleList"></div>
-    </main>
-
-    <!-- 公众号管理页 -->
-    <main class="main" id="accountsPage" style="display: none;">
-      <div class="section">
-        <h3>当前公众号</h3>
-        <div class="current-account" id="currentAccount"></div>
-      </div>
-      <div class="section">
-        <h3>公众号列表</h3>
-        <div class="account-list" id="accountList"></div>
-      </div>
-      <div class="section">
-        <button class="btn btn-primary btn-block" onclick="showAddAccount()">+ 添加公众号</button>
+      <div class="empty-tip" id="emptyTip" style="display: none;">
+        <div class="empty-icon">📭</div>
+        <p>暂无文章，点击右下角添加</p>
       </div>
     </main>
 
-    <!-- 添加文章页 -->
-    <main class="main" id="addArticlePage" style="display: none;">
-      <div class="form-card">
-        <h3>添加文章</h3>
-        <div class="form-group">
-          <label>文章标题</label>
-          <input type="text" id="articleTitle" placeholder="输入文章标题">
-        </div>
-        <div class="form-group">
-          <label>文章链接</label>
-          <input type="url" id="articleUrl" placeholder="https://mp.weixin.qq.com/s/...">
-        </div>
-        <div class="form-group">
-          <label>摘要（可选）</label>
-          <textarea id="articleSummary" rows="3" placeholder="输入文章摘要"></textarea>
-        </div>
-        <div class="form-actions">
-          <button class="btn btn-default" onclick="showPage('articles')">取消</button>
-          <button class="btn btn-primary" onclick="saveArticle()">保存</button>
-        </div>
-      </div>
-    </main>
-
-    <!-- 添加公众号页 -->
-    <main class="main" id="addAccountPage" style="display: none;">
-      <div class="form-card">
-        <h3>添加公众号</h3>
-        <div class="form-group">
-          <label>公众号名称</label>
-          <input type="text" id="accountName" placeholder="例如：36氪">
-        </div>
-        <div class="form-group">
-          <label>公众号ID（可选）</label>
-          <input type="text" id="accountId" placeholder="例如：wow36kr">
-        </div>
-        <div class="form-group">
-          <label>描述（可选）</label>
-          <input type="text" id="accountDesc" placeholder="简短描述">
-        </div>
-        <div class="form-actions">
-          <button class="btn btn-default" onclick="showPage('accounts')">取消</button>
-          <button class="btn btn-primary" onclick="saveAccount()">保存</button>
-        </div>
-      </div>
-    </main>
-
-    <!-- 切换公众号弹窗 -->
-    <div class="modal" id="accountModal" style="display: none;">
-      <div class="modal-overlay" onclick="hideAccountModal()"></div>
+    <!-- 添加文章浮层 -->
+    <div class="modal" id="addModal" style="display: none;">
+      <div class="modal-overlay" onclick="hideAddModal()"></div>
       <div class="modal-content">
         <div class="modal-header">
-          <h3>选择公众号</h3>
-          <button class="modal-close" onclick="hideAccountModal()">✕</button>
+          <h3>添加文章</h3>
+          <button class="modal-close" onclick="hideAddModal()">✕</button>
         </div>
         <div class="modal-body">
-          <div class="account-select-list" id="accountSelectList"></div>
+          <p class="modal-tip">粘贴微信文章链接，支持批量添加（每行一个）</p>
+          <textarea id="articleLinks" rows="6" placeholder="https://mp.weixin.qq.com/s/..."></textarea>
+          <button class="btn btn-primary btn-block" onclick="addArticles()">添加</button>
         </div>
       </div>
     </div>
 
-    <!-- 底部导航 -->
-    <nav class="tabbar">
-      <div class="tab-item active" onclick="showPage('articles')">
-        <span class="tab-icon">📑</span>
-        <span class="tab-label">文章</span>
-      </div>
-      <div class="tab-item" onclick="showPage('accounts')">
-        <span class="tab-icon">🏢</span>
-        <span class="tab-label">公众号</span>
-      </div>
-    </nav>
-
     <!-- 悬浮添加按钮 -->
-    <button class="fab" id="fab" onclick="showAddArticle()">+</button>
+    <button class="fab" onclick="showAddModal()">+</button>
   </div>
 
   <script src="app.js"></script>
