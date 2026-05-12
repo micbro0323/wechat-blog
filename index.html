@@ -42,9 +42,54 @@
           <button class="modal-close" onclick="hideAddModal()">✕</button>
         </div>
         <div class="modal-body">
-          <p class="modal-tip">粘贴微信文章链接，支持批量添加（每行一个）</p>
+          <p class="modal-tip">粘贴微信文章链接，每行一个，支持批量添加</p>
           <textarea id="articleLinks" rows="6" placeholder="https://mp.weixin.qq.com/s/..."></textarea>
           <button class="btn btn-primary btn-block" onclick="addArticles()">添加</button>
+          <div class="tutorial-link" onclick="showTutorial()">📖 如何获取历史文章链接？</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 教程弹窗 -->
+    <div class="modal" id="tutorialModal" style="display: none;">
+      <div class="modal-overlay" onclick="hideTutorial()"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>获取历史文章链接</h3>
+          <button class="modal-close" onclick="hideTutorial()">✕</button>
+        </div>
+        <div class="modal-body tutorial-body">
+          <div class="tutorial-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>打开微信</strong><br>
+              进入「梦影露电」公众号主页
+            </div>
+          </div>
+          <div class="tutorial-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>查看全部消息</strong><br>
+              点击「全部消息」进入历史文章列表
+            </div>
+          </div>
+          <div class="tutorial-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>逐篇复制链接</strong><br>
+              打开文章 → 右上角「···」→ 「复制链接」
+            </div>
+          </div>
+          <div class="tutorial-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>批量粘贴</strong><br>
+              将复制的链接每行一个粘贴到输入框
+            </div>
+          </div>
+          <div class="tutorial-note">
+            💡 提示：如果你有电脑版微信，可以在浏览器中打开历史文章列表，批量复制链接更方便。
+          </div>
         </div>
       </div>
     </div>

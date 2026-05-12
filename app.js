@@ -5,9 +5,23 @@ const DEFAULT_ARTICLES = [
   {
     id: 'art_1',
     title: '春天的太阳比金子还贵',
-    summary: '这里是梦影露电公众号，记录生活点滴，分享所思所感。点击添加更多文章链接。',
+    summary: '记录生活点滴，分享所思所感。',
     url: 'https://mp.weixin.qq.com/s/h26JvIDmAs6MtR1TtzMLvQ',
     createdAt: Date.now()
+  },
+  {
+    id: 'art_2',
+    title: '示例文章 - 点击阅读原文',
+    summary: '这是一篇示例占位文章。添加你的历史推送后，这里会显示真实内容。',
+    url: 'https://mp.weixin.qq.com/s/h26JvIDmAs6MtR1TtzMLvQ',
+    createdAt: Date.now() - 86400000
+  },
+  {
+    id: 'art_3',
+    title: '示例文章 - 添加更多链接',
+    summary: '点击下方 + 按钮，可以一次性批量添加所有历史文章链接。',
+    url: 'https://mp.weixin.qq.com/s/h26JvIDmAs6MtR1TtzMLvQ',
+    createdAt: Date.now() - 172800000
   }
 ];
 
@@ -68,6 +82,14 @@ function showAddModal() {
 
 function hideAddModal() {
   document.getElementById('addModal').style.display = 'none';
+}
+
+function showTutorial() {
+  document.getElementById('tutorialModal').style.display = 'flex';
+}
+
+function hideTutorial() {
+  document.getElementById('tutorialModal').style.display = 'none';
 }
 
 function addArticles() {
