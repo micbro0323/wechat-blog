@@ -4,7 +4,7 @@ const STORAGE_KEY = 'dream_articles';
 const DEFAULT_ARTICLES = [
   {
     id: 'art_1',
-    title: '欢迎来到梦影露电',
+    title: '春天的太阳比金子还贵',
     summary: '这里是梦影露电公众号，记录生活点滴，分享所思所感。点击添加更多文章链接。',
     url: 'https://mp.weixin.qq.com/s/h26JvIDmAs6MtR1TtzMLvQ',
     createdAt: Date.now()
